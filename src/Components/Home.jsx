@@ -18,23 +18,23 @@ const Home = ({ isLoading, weatherData }) => {
             </div>
 
 
-            {isLoading ? (<div><h1>.....loading</h1></div>) : (<div>
+            {isLoading ? (<div><h1>.....loading</h1></div>) : (<div className="container mx-auto ">
 
 
-                <div>
-                    <div className="location">
-                        <p> DALLAS</p>
+                <div className="container mx-auto flex lg:mt-[400px] gap-4 ">
+                    <div className="location ">
+                        <p className="text-[70px]">  DALLAS</p>
                     </div>
 
                     <div className="temp">
-                        <h1>60 F</h1>
+                        <h2 className="text-[40px]">60 F</h2>
 
                     </div>
                     <div className="decription">
                         <p>Clouds</p>
                     </div>
                 </div>
-                <div>
+                <div className="flex">
                     <div className="feels">
                         <h1>65 F</h1>
                     </div>
