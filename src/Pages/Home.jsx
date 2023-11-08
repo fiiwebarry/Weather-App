@@ -88,14 +88,14 @@ const Home = () => {
 
     return (
         <section className={`${weatherForecastBg} bg-cover bg-no-repeat min-h-screen relative`}  >
-            <div className=" top-0  h-screen w-screen bg-gradient-to-r from-[#00000080] to-[#0000009c]">
-                <div className="container mx-auto w-[85%] pt-[20px] absolute inset-0 ">
+            <div className=" top-0  min-h-screen w-screen bg-gradient-to-r from-[#00000080] to-[#0000009c]">
+                <div className="container mx-auto w-[85%] pt-[20px] lg:absolute inset-0 ">
                     <h1 className=" text-white text-xl lg:text-2xl font-semibold">Weather-Wiz</h1>
                 </div>
-                <aside className=" bg-opacity-50 shadow-2xl  top-0  w-[38%] right-0 h-[100vh] fixed p-4 z-20">
+                <aside className=" bg-opacity-50 shadow-2xl  lg:top-0  w-[38%] lg:right-0  lg:h-[100vh] lg:fixed p-4 z-20">
                     <div className="relative">
                         <input type="text"
-                            className="w-[500px] h-[50px]  rounded p-3"
+                            className=" lg:w-[500px]  w:[200px] lg:h-[50px] h-[20px]  rounded p-3"
                             placeholder="search for a city"
                             value={inputLocation}
                             onChange={(e) => setInputLocation(e.target.value)}
@@ -145,18 +145,18 @@ const Home = () => {
                     <hr className="mt-[180px]" />
                     <button className="bg-[#FFFF] text-[blue] rounded mt-[40px] h-[40px] w-[200px]">View Saved Location</button>
 
-                    {isLoading ? (<div className="absolute inset-0">isLoading....</div>) : <div className="text-[20px] font-medium mt-[90px]">
+                    {isLoading ? (<div className="absolute inset-0">isLoading....</div>) : <div className=" text-[white]text-[20px] font-medium mt-[90px]">
 
-                        <h2>Current Location Weather Details</h2>
+                        <h2 className="text-white">Current Location Weather Details</h2>
                         <div className="flex justify-between mt-4">
-                            <h2 className="text-[20px] font-medium ">Humidity:</h2>
+                            <h2 className="text-[20px] font-medium text-white">Humidity:</h2>
                             {weatherData.main ? <p>{weatherData.main.humidity}</p> : null}
                         </div>
-                        <div className="flex justify-between mt-4">
+                        <div className="flex justify-between mt-4 text-white">
                             <h2 className="text-[20px] font-medium">Temperature:</h2>
                             {weatherData.main ? <p>{weatherData.main.temp} °F</p> : null}
                         </div>
-                        <div className="flex justify-between mt-4">
+                        <div className="flex justify-between mt-4 text-white">
                             <h2 className="text-[20px] font-medium ">Wind Speed:</h2>
                             {weatherData.main ? <p>{weatherData.wind.speed}</p> : null}
                         </div>
@@ -187,7 +187,7 @@ const Home = () => {
                                     <div className="text-white text-lg font-semibold lg:text-xl">
                                         {`${todaysDate.toLocaleTimeString()} - ${todaysDate.toDateString()}`}
                                         <div>
-                                            <p>{weatherIcon} Clouds</p>
+                                            <p>{weatherIcon}</p>
                                             {weatherData.main ? <p className="text-lg xl:text-xl font-bold">{weatherData.weather[0].main}</p> : null}
 
                                         </div>
