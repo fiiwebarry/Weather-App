@@ -1,9 +1,9 @@
 /* eslint-disable react/prop-types */
 import Axios from "../Axios-Api/Axios";
 import { useState, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
+// import { Link, useNavigate } from "react-router-dom";
 import { BsFillCloudRainFill, BsFillCloudsFill, BsSnow, BsSunFill, } from "react-icons/bs";
-import { AiOutlineClose } from "react-icons/ai";
+// import { AiOutlineClose } from "react-icons/ai";
 
 const Home = () => {
     const todaysDate = new Date();
@@ -15,23 +15,10 @@ const Home = () => {
 
     );
 
-    const weatherForcast = async () => {
-        try {
-            setIsLoading(true);
-            const response = await Axios.get(
-                "http://api.openweathermap.org/data/2.5/weather?lat=44.34&lon=10.99&appid=ed56b79b5e1480bc48e4dade380e5bcb"
-            );
-            setWeatherData(response.data);
-            if (response.status === 200) {
-                setIsLoading(false);
-            }
-        } catch (error) {
-            console.log(error);
-        }
-    };
+
 
     //get location
-    const getWeather = async (latitude, longitude) => {
+    const getWeatherForecast = async (latitude, longitude) => {
         try {
             const url = `/weather?lat=${latitude}&lon=${longitude}appid=ed56b79b5e1480bc48e4dade380e5bcb&units=metric`;
 
@@ -40,6 +27,7 @@ const Home = () => {
             if (response.status === 200) {
                 setWeatherData(response.data);
                 setWeatherBackground(response.data.weather[0].main);
+                console.log(response.data);
                 setIsLoading(false);
             }
         } catch (error) {
@@ -90,8 +78,13 @@ const Home = () => {
     };
 
     useEffect(() => {
-        weatherForcast();
-        inputLocationHandler();
+        navigator.geolocation.getCurrentPosition((position) => {
+            const { latitude, longitude } = position.coords;
+            getWeatherForecast(latitude, longitude);
+        });
+
+
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     return (
@@ -113,6 +106,43 @@ const Home = () => {
                         <button onClick={inputLocationHandler} className="bg-[#00F] rounded w-[50px]  h-[40px] absolute  top-[7px] left-[430px]  text-[10px] p-2">Search</button>
                     </div>
 
+                    <div className="min-h-[150px] pb-2 max-h-[250px]">
+                        <h2 className="text-lg lg:text-2xl font-semibold mb-2">
+                            Your Previous Searches
+                        </h2>
+                        {/* <div className="max-h-[180px] overflow-y-auto">
+                            {searchHistory.length > 0 ? (
+                                <ul>
+                                    {searchHistory.map((history) => (
+                                        <li
+                                            key={history.name}
+                                            className="font-semibold text-xl xl:text-2xl mb-3 w-[300px] flex items-center justify-between"
+                                        >
+                                            <button onClick={() => navigateToCity(history)}>
+                                                {history.name}
+                                            </button>
+                                            <button
+                                                onClick={() =>
+                                                    dispatch({
+                                                        type: "DELETE_SEARCH",
+                                                        payload: history,
+                                                    })
+                                                }
+                                                className="w-[30px] h-[30px] bg-gray-300 text-black rounded-full shadow-xl flex items-center justify-center"
+                                            >
+                                                <AiOutlineClose className="inline-block text-lg" />
+                                            </button>
+                                        </li>
+                                    ))}
+                                </ul>
+                            ) : (
+                                <p className="font-semibold xl:text-xl">
+                                    No searches yet
+                                </p>
+                            )}
+                        </div> */}
+                    </div>
+
                     <hr className="mt-[180px]" />
                     <button className="bg-[#FFFF] text-[blue] rounded mt-[40px] h-[40px] w-[200px]">View Saved Location</button>
 
@@ -131,10 +161,6 @@ const Home = () => {
                             <h2 className="text-[20px] font-medium ">Wind Speed:</h2>
                             {weatherData.main ? <p>{weatherData.wind.speed}</p> : null}
                         </div>
-
-
-
-
                     </div>}
 
                 </aside>
@@ -157,35 +183,23 @@ const Home = () => {
                                         </h2>
                                     ) : null}
                                 </div>
-                                <div className="decription">
-                                    <p>Clouds</p>
-                                    <p className="text-white text-lg font-semibold lg:text-xl">
+                                <div className="decription flex">
+
+                                    <div className="text-white text-lg font-semibold lg:text-xl">
                                         {`${todaysDate.toLocaleTimeString()} - ${todaysDate.toDateString()}`}
                                         <div>
-                                            {weatherIcon}
+                                            <p>{weatherIcon} Clouds</p>
                                             {weatherData.main ? <p className="text-lg xl:text-xl font-bold">{weatherData.weather[0].main}</p> : null}
 
                                         </div>
-                                    </p>
+                                    </div>
                                 </div>
 
 
                             </div>
-                            <div className="flex">
-                                <div className="feels">
-                                    <h1>{weatherData.temps}</h1>
 
 
-                                </div>
-                                <div className="humidity">
-                                    <p>20</p>
-                                </div>
-                                <div className="wind">
-                                    <p>200</p>
-                                </div>
-                            </div>
 
-                            <p>{weatherData.timezone}</p>
                         </div>
                     )}
                 </div>
