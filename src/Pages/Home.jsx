@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import Axios from "../Axios-Api/Axios";
+import axios from "../Axios-Api/axios";
 import { useState, useEffect } from "react";
 // import { Link, useNavigate } from "react-router-dom";
 import { BsFillCloudRainFill, BsFillCloudsFill, BsSnow, BsSunFill, } from "react-icons/bs";
@@ -21,8 +21,7 @@ const Home = () => {
     const getWeatherForecast = async (latitude, longitude) => {
         try {
             const url = `/weather?lat=${latitude}&lon=${longitude}appid=ed56b79b5e1480bc48e4dade380e5bcb&units=metric`;
-
-            const response = await Axios.get(url);
+            const response = await axios.get(url);
 
             if (response.status === 200) {
                 setWeatherData(response.data);
@@ -64,7 +63,7 @@ const Home = () => {
     const inputLocationHandler = async () => {
         try {
             setIsLoading(true);
-            const response = await Axios.get(`/weather?q=${inputLocation}&appid=ed56b79b5e1480bc48e4dade380e5bcb`);
+            const response = await axios.get(`/weather?q=${inputLocation}&appid=ed56b79b5e1480bc48e4dade380e5bcb`);
 
             if (response.status === 200) {
                 setInputLocation('');

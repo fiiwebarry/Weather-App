@@ -2,5 +2,5 @@
 import axios from "axios"
 
 export default axios.create({
-    baseURL: "http://api.openweathermap.org",
+    baseURL: "https://api.openweathermap.org/data/2.5",
 })
