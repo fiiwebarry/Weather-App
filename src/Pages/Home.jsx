@@ -92,21 +92,21 @@ const Home = () => {
                 <div className="container mx-auto w-[85%] pt-[20px] lg:absolute inset-0 ">
                     <h1 className=" text-white text-xl lg:text-2xl font-semibold">Weather-Wiz</h1>
                 </div>
-                <aside className=" bg-opacity-50 shadow-2xl  lg:top-0  w-[38%] lg:right-0  lg:h-[100vh] lg:fixed p-4 z-20">
+                <aside className=" bg-opacity-50 shadow-2xl  lg:top-0  md:left-2  w-[100%] lg:w-[38%] lg:left-[889px] lg:h-[100vh] lg:fixed p-4 z-20">
                     <div className="relative">
                         <input type="text"
-                            className=" lg:w-[500px]  w:[200px] lg:h-[50px] h-[20px]  rounded p-3"
+                            className=" lg:w-[500px] md:w-[350px] w-[300px] lg:h-[50px]  md:ml-5 h-[50px] lg:mt-0 mt-[450px] rounded p-3"
                             placeholder="search for a city"
                             value={inputLocation}
                             onChange={(e) => setInputLocation(e.target.value)}
 
                         />
 
-                        <button onClick={inputLocationHandler} className="bg-[#00F] rounded w-[50px]  h-[40px] absolute  top-[7px] left-[430px]  text-[10px] p-2">Search</button>
+                        <button onClick={inputLocationHandler} className="bg-[#00F] rounded w-[50px] md:left-[300px] h-[40px] lg:absolute  absolute top-[455px]  left-[240px] lg:top-[7px] lg:left-[430px]  text-[10px] p-2">Search</button>
                     </div>
 
                     <div className="min-h-[150px] pb-2 max-h-[250px]">
-                        <h2 className="text-lg lg:text-2xl font-semibold mb-2">
+                        <h2 className=" text-white text-lg lg:text-2xl  md:ml-5 font-semibold mt-5 lg:mb-2">
                             Your Previous Searches
                         </h2>
                         {/* <div className="max-h-[180px] overflow-y-auto">
@@ -142,19 +142,19 @@ const Home = () => {
                         </div> */}
                     </div>
 
-                    <hr className="mt-[180px]" />
+                    <hr className="lg:mt-[180px] mt-[40px]" />
                     <button className="bg-[#FFFF] text-[blue] rounded mt-[40px] h-[40px] w-[200px]">View Saved Location</button>
 
                     {isLoading ? (<div className="absolute inset-0">isLoading....</div>) : <div className=" text-[white]text-[20px] font-medium mt-[90px]">
 
                         <h2 className="text-white">Current Location Weather Details</h2>
-                        <div className="flex justify-between mt-4">
+                        <div className="flex justify-between mt-4 text-white">
                             <h2 className="text-[20px] font-medium text-white">Humidity:</h2>
                             {weatherData.main ? <p>{weatherData.main.humidity}</p> : null}
                         </div>
                         <div className="flex justify-between mt-4 text-white">
                             <h2 className="text-[20px] font-medium">Temperature:</h2>
-                            {weatherData.main ? <p>{weatherData.main.temp} °F</p> : null}
+                            {weatherData.main ? <p>{weatherData.main.temp}</p> : null}
                         </div>
                         <div className="flex justify-between mt-4 text-white">
                             <h2 className="text-[20px] font-medium ">Wind Speed:</h2>
@@ -169,8 +169,8 @@ const Home = () => {
                             <h1>.....loading</h1>
                         </div>
                     ) : (
-                        <div className="container mx-auto absolute inset-0  ">
-                            <div className="container mx-auto  w-[85%]flex lg:mt-[400px] gap-4 z-50 ">
+                        <div className="container mx-auto absolute inset-0  flex">
+                            <div className="md:p-[40px] p-[30px]  w-[85%] lg:flex  flex flex-col lg:mt-[400px]  mt-[200px] gap-4 z-50 ">
                                 <div className="location ">
                                     <p className="text-[70px] text-[#FFFF]">{weatherData.name}</p>
                                 </div>
