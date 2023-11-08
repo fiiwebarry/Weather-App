@@ -20,7 +20,7 @@ const Home = () => {
     //get location
     const getWeatherForecast = async (latitude, longitude) => {
         try {
-            const url = `/weather?lat=${latitude}&lon=${longitude}appid=ed56b79b5e1480bc48e4dade380e5bcb&units=metric`;
+            const url = `/weather?lat=${latitude}&lon=${longitude}&appid=ed56b79b5e1480bc48e4dade380e5bcb&units=metric`;
             const response = await axios.get(url);
 
             if (response.status === 200) {
