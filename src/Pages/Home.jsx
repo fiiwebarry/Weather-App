@@ -64,7 +64,7 @@ const Home = () => {
     const inputLocationHandler = async () => {
         try {
             setIsLoading(true);
-            const response = await Axios.get(`http://api.openweathermap.org/data/2.5/weather?q=${inputLocation}&appid=ed56b79b5e1480bc48e4dade380e5bcb`);
+            const response = await Axios.get(`/weather?q=${inputLocation}&appid=ed56b79b5e1480bc48e4dade380e5bcb`);
 
             if (response.status === 200) {
                 setInputLocation('');
