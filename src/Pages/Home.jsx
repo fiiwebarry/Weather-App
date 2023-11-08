@@ -163,9 +163,8 @@ const Home = () => {
                                         {`${todaysDate.toLocaleTimeString()} - ${todaysDate.toDateString()}`}
                                         <div>
                                             {weatherIcon}
-                                            <p className="text-lg xl:text-xl font-bold">
-                                                {weatherData.weather[0].main}
-                                            </p>
+                                            {weatherData.main ? <p className="text-lg xl:text-xl font-bold">{weatherData.weather[0].main}</p> : null}
+
                                         </div>
                                     </p>
                                 </div>
