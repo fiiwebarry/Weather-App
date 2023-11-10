@@ -28,6 +28,12 @@ const Home = () => {
     const [isLoading, setIsLoading] = useState(false);
     const [weatherForecastBg, setWeatherForecastBg] = useState("bg-cloudy");
 
+    const deleteHistory = (id) => {
+        const history = weatherHistory.filter((history) => {
+            return history.id !== id
+        })
+        setWeatherHistory(history);
+    };
 
     //get location
     const getWeatherForecast = async (latitude, longitude) => {
@@ -71,6 +77,9 @@ const Home = () => {
                 break;
         }
     };
+
+    // 
+
     // eslint-disable-next-line no-unused-vars
     const inputLocationHandler = async (location) => {
         try {
@@ -97,6 +106,9 @@ const Home = () => {
             alert("Enter the name of a valid city");
         }
     };
+
+    // delete
+
 
     useEffect(() => {
         navigator.geolocation.getCurrentPosition((position) => {
@@ -161,7 +173,7 @@ const Home = () => {
                                             >
                                                 <button onClick={""}>{history.history}</button>
                                                 <button
-                                                    onClick={""}
+                                                    onClick={() => deleteHistory(history.id)}
                                                     className="w-[30px] h-[30px] bg-gray-300 text-white rounded-full shadow-xl flex items-center justify-center"
                                                 >
                                                     <AiOutlineClose className="inline-block text-lg" />

@@ -1,5 +1,6 @@
 import { WeatherApp } from "../Context-Api/ForecastContext"
 import { useContext } from "react"
+import { Link } from "react-router-dom";
 // import {
 //   BsFillCloudRainFill,
 //   BsFillCloudsFill,
@@ -18,11 +19,13 @@ const SearchPage = () => {
 
     <section className="bg-[url('src/assets/Images/rainy.jpg')] bg-cover bg-no-repeat min-h-screen  ">
       <div className="  h-screen w-screen bg-gradient-to-r from-[#00000080] to-[#0000009c]">
-        <div className="pt-[97px]">
-          <div className="flex justify-center  gap-6 justify-items-center text-center  lg:w-[800px]  rounded border mx-auto border-white shadow-lg  lg:pt-[90px] lg:pb-[40px]">
+        <div className="pt-[120px]">
+          <div className="flex justify-center  gap-6 justify-items-center text-center  lg:w-[800px]  rounded border mx-auto  shadow-lg  shadow-[white] lg:pt-[110px] lg:pb-[40px]">
 
             <div className="">
-              <AiOutlineStepBackward className="text-[40px] text-white" />
+              <Link to="/">
+                <AiOutlineStepBackward className="text-[40px] text-white" /></Link>
+
 
               <div className="location ">
                 <p className="text-[70px] text-[#FFFF]">{weatherData.name}</p>
