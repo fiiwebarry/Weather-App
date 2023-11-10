@@ -21,13 +21,13 @@ const Home = () => {
         setWeatherHistory,
         weatherData,
         setWeatherData,
+        setWeatherIcon,
+        weatherIcon
     } = useContext(WeatherApp);
     const todaysDate = new Date();
     const [isLoading, setIsLoading] = useState(false);
     const [weatherForecastBg, setWeatherForecastBg] = useState("bg-cloudy");
-    const [weatherIcon, setWeatherIcon] = useState(
-        <BsFillCloudsFill className="inline-flex text-lg mb-1 lg:text-3xl" />
-    );
+
 
     //get location
     const getWeatherForecast = async (latitude, longitude) => {
@@ -157,12 +157,12 @@ const Home = () => {
                                         return (
                                             <li
                                                 key={history.history}
-                                                className="font-semibold text-xl xl:text-2xl mb-3 w-[300px] flex items-center justify-between"
+                                                className="font-semibold text-xl xl:text-2xl mb-3 w-[300px] text-white flex items-center justify-between p-4"
                                             >
                                                 <button onClick={""}>{history.history}</button>
                                                 <button
                                                     onClick={""}
-                                                    className="w-[30px] h-[30px] bg-gray-300 text-black rounded-full shadow-xl flex items-center justify-center"
+                                                    className="w-[30px] h-[30px] bg-gray-300 text-white rounded-full shadow-xl flex items-center justify-center"
                                                 >
                                                     <AiOutlineClose className="inline-block text-lg" />
                                                 </button>
@@ -192,6 +192,7 @@ const Home = () => {
                             <h2 className="text-white text-[20px]">
                                 Current Location Weather Details
                             </h2>
+
                             <div className="flex justify-between mt-4 text-white">
                                 <h2 className="text-[20px] font-medium text-white">
                                     Humidity:
@@ -216,7 +217,7 @@ const Home = () => {
                         </div>
                     ) : (
                         <div className="container mx-auto absolute inset-0  flex">
-                            <div className="md:p-[40px] p-[30px]  w-[85%] lg:flex  flex flex-col lg:mt-[400px]  mt-[200px] gap-4 z-50 ">
+                            <div className="md:p-[40px] p-[30px]  w-[85%] lg:flex  flex flex-col lg:mt-[300px]  mt-[200px] gap-4 z-50 ">
                                 <div className="location ">
                                     <p className="text-[70px] text-[#FFFF]">{weatherData.name}</p>
                                 </div>
