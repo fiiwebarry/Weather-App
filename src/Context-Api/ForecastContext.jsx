@@ -1,20 +1,22 @@
 
 import PropTypes from "prop-types";
-import { createContext, useReducer } from "react";
+import { createContext, useState } from "react";
 
 export const WeatherApp = createContext({});
 
-const ForecastContext = ({ children }) => {
-    const [state, dispatch] = useReducer(reducer, defaultState);
+export const ForecastContext = ({ children }) => {
+    const [inputLocation, setInputLocation] = useState("");
+    const [weatherHistory, setWeatherHistory] = useState([]);
+    const [weatherData, setWeatherData] = useState({});
+
 
     return (
         <WeatherApp.Provider
             value={{
-                dispatch,
-                searchHistory: state.searchHistory,
-                cityWeather: state.cityWeather,
-                isModalOpen: state.isModalOpen,
-                savedLocations: state.savedLocations,
+                inputLocation, setInputLocation,
+                weatherHistory, setWeatherHistory,
+                weatherData, setWeatherData
+
             }}
         >
             {children}
